@@ -1,34 +1,46 @@
 import { StatusBar } from 'expo-status-bar';
+import { useEffect, useState } from 'react';
 import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
-
-const URI =
-  'https://m.media-amazon.com/images/M/MV5BMWRiZGQ1NDMtODQ2OS00MDlhLWJkZGYtM2ZmNjlhZThjOWRmXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_FMjpg_UX1000_.jpg';
-
+import { getPopularMovies } from './src/api/movies';
 
 export default function App() {
+  const [popularMovies, setPopularMovies] = useState([]);
+
+  useEffect(() => {
+    fetchPopularMovies();
+  }, []);
+
+  const fetchPopularMovies = async () => {
+    const fetchedPopularMovies = await getPopularMovies();
+    setPopularMovies(fetchedPopularMovies);
+  };
+
   return (
     <View style={styles.container}>
       <Text>MOST POPULAR MOVIES</Text>
       <ScrollView horizontal>
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
+        {popularMovies.map(popularMovie => (
+          <MovieCard
+            key={popularMovie.title}
+            image={popularMovie.posterImage}
+            title={popularMovie.title}
+          />
+        ))}
       </ScrollView>
       <StatusBar style="auto" />
     </View>
   );
 }
 
-const MovieCard = () => (
+const MovieCard = ({title, image}) => (
   <View>
     <Image
       source={{
-        uri: URI,
+        uri: image,
       }}
       style={{width: 200, height: 350, marginRight: 8}}
     />
-    <Text>Sing 2</Text>
+    <Text>{title}</Text>
   </View>
 );
 
