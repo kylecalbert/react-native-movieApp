@@ -1,14 +1,9 @@
 import React, { useState, useEffect} from 'react';
-import Movies from './src/screens/Movies/Movies.jsx';
 
+import Navigation from './src/routes/RouteContainer';
 
-  
 const App = () => {
-  return (
-    <>
-      <Movies />
-    </>
-  );
+  return <Navigation />;
 }
 
 export default App;
