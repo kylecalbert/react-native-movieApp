@@ -1,11 +1,23 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Image, View, Text, SafeAreaView, ScrollView} from 'react-native';
 import {useRoute} from '@react-navigation/native';
 
 import styles from './Movie.style.js';
+import { getIndividualMovie } from '../../api/movies.js';
 
 const Movie = () => {
   const {params} = useRoute();
+
+  const [movie, setMovie] = useState({});
+
+  useEffect(() => {
+    fetchIndividualMovie(params.id);
+  }, [params]);
+
+  const fetchIndividualMovie = async id => {
+    const individualMovie = await getIndividualMovie(id);
+    setMovie(individualMovie);
+  };
 
   const MetaData = ({title, value}) => (
     <View style={styles.metaDataContainer}>
@@ -17,41 +29,31 @@ const Movie = () => {
   return (
     <SafeAreaView>
       <ScrollView>
-        <Image
-          source={{
-            uri: 'https://m.media-amazon.com/images/M/MV5BZTQ0MmI0MmEtNjQwNi00NDFmLWEwMGUtZWYyMGYxYzQ5ZTNiXkEyXkFqcGdeQWxiaWFtb250._V1_.jpg',
-          }}
-          style={styles.bannerImage}
-        />
+        <Image source={{uri: movie.bannerImage}} style={styles.bannerImage} />
 
         <View style={styles.container}>
           <View style={styles.filmInfoContainer}>
             <>
               <Image
-                source={{
-                  uri: 'https://m.media-amazon.com/images/M/MV5BMWRiZGQ1NDMtODQ2OS00MDlhLWJkZGYtM2ZmNjlhZThjOWRmXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_FMjpg_UX1000_.jpg',
-                }}
+                source={{uri: movie.posterImage}}
                 style={styles.posterImage}
               />
             </>
             <View style={styles.filmInfo}>
-              <Text style={styles.bold}>Sing 2</Text>
-              <Text>1 hour 50 minutes</Text>
+              <Text style={styles.bold}>{movie.title}</Text>
+              <Text>{movie.duration}</Text>
             </View>
           </View>
 
           <View style={styles.marginTop}>
-            <MetaData title="Release date" value="28 January 2022" />
-            <MetaData title="Director" value="Garth Jennings" />
-            <MetaData title="Box Offie" value="$190.8 million" />
+            <MetaData title="Release date" value={movie.releaseDate} />
+            <MetaData title="Director" value={movie.director} />
+            <MetaData title="Box Office" value={movie.boxOffice} />
           </View>
 
           <View style={styles.marginTop}>
             <Text style={styles.bold}>STORYLINE</Text>
-            <Text>
-              Buster Moon and his friends must persuade reclusive rock star Clay
-              Calloway to join them for the opening of a new show.
-            </Text>
+            <Text>{movie.storyline}</Text>
           </View>
         </View>
       </ScrollView>

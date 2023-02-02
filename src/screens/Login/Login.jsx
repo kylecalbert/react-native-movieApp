@@ -1,15 +1,17 @@
 import React, {useState} from 'react';
 import {SafeAreaView, View, Text, TextInput, Button} from 'react-native';
+import {useAuthorization} from '../../context/AuthorizationContext';
 
 import styles from './Login.style';
 
 const Login = () => {
+  const [_, setIsAuthorised] = useAuthorization();
+
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
   const loginUser = () => {
-    console.log(email);
-    console.log(password);
+    setIsAuthorised(true);
   };
 
   return (

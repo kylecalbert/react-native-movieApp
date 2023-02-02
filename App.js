@@ -1,9 +1,14 @@
-import React, { useState, useEffect} from 'react';
+import React from 'react';
 
+import {AuthorizationProvider} from './src/context/AuthorizationContext';
 import Navigation from './src/routes/RouteContainer';
 
 const App = () => {
-  return <Navigation />;
-}
+  return (
+    <AuthorizationProvider>
+      <Navigation />
+    </AuthorizationProvider>
+  );
+};
 
 export default App;

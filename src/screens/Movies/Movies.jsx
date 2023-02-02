@@ -1,6 +1,14 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useState, useEffect} from 'react';
-import {View, Text, Image, SafeAreaView, Pressable, FlatList, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  SafeAreaView,
+  Pressable,
+  ScrollView,
+  FlatList,
+} from 'react-native';
 
 import {getPopularMovies, getAllMovies} from '../../api/movies.js';
 
@@ -8,7 +16,6 @@ import styles from './Movies.styles.js';
 
 const Movies = () => {
   const navigation = useNavigation();
-
   const [popularMovies, setPopularMovies] = useState();
   const [movies, setMovies] = useState();
 
@@ -30,28 +37,30 @@ const Movies = () => {
   const MovieColumn = ({id, posterImage, title}) => (
     <Pressable
       style={styles.movieColumnContainer}
-      onPress={() => navigation.navigate('Movie')}>
+      onPress={() => navigation.navigate('Movie', {id})}>
       <Image source={{uri: posterImage}} style={styles.movieColumnImage} />
       <Text style={styles.movieColumnTitle}>{title}</Text>
     </Pressable>
   );
 
-  const MovieRow = ({ image, title, characters, genre, release }) => {
+  const MovieRow = ({image, title, characters, genre, release}) => {
     return (
-    <View style={styles.movieRowContainer}>
-      <Image source={{ uri: image }} style={styles.movieRowImage} />
-      <View style={styles.movieInfoContainer}>
-        <View>
-          <Text style={styles.movieRowTitle}>{title}</Text>
-          <Text>{characters}</Text>
-        </View>
-        <View>
-          <Text>{genre}</Text>
-          <Text>{release}</Text>
+      <View style={styles.movieRowContainer}>
+        <Image source={{uri: image}} style={styles.movieRowImage} />
+
+        <View style={styles.movieInfoContainer}>
+          <View>
+            <Text style={styles.movieRowTitle}>{title}</Text>
+            <Text>{characters}</Text>
+          </View>
+          <View>
+            <Text>{genre}</Text>
+            <Text>{release}</Text>
+          </View>
         </View>
       </View>
-    </View>)
-  }
+    );
+  };
 
   return (
     <SafeAreaView style={{backgroundColor: 'white'}}>
