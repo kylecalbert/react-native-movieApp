@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
-import {AuthorizationProvider} from './src/context/AuthorizationContext';
-import Navigation from './src/routes/RouteContainer';
+import { AuthorizationProvider } from "./src/context/AuthorizationContext";
+import Navigation from "./src/routes/RouteContainer";
 
 const App = () => {
   return (

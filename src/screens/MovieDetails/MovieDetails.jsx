@@ -1,12 +1,12 @@
-import React, {useEffect, useState} from 'react';
-import {Image, View, Text, SafeAreaView, ScrollView} from 'react-native';
-import {useRoute} from '@react-navigation/native';
+import { useRoute } from "@react-navigation/native";
+import React, { useEffect, useState } from "react";
+import { Image, View, Text, SafeAreaView, ScrollView } from "react-native";
 
-import styles from './Movie.style.js';
-import { getIndividualMovie } from '../../api/movies.js';
+import styles from "./MovieDetails.style.js";
+import { getIndividualMovie } from "../../api/movies.js";
 
-const Movie = () => {
-  const {params} = useRoute();
+const MovieDetails = () => {
+  const { params } = useRoute();
 
   const [movie, setMovie] = useState({});
 
@@ -14,12 +14,12 @@ const Movie = () => {
     fetchIndividualMovie(params.id);
   }, [params]);
 
-  const fetchIndividualMovie = async id => {
+  const fetchIndividualMovie = async (id) => {
     const individualMovie = await getIndividualMovie(id);
     setMovie(individualMovie);
   };
 
-  const MetaData = ({title, value}) => (
+  const MetaData = ({ title, value }) => (
     <View style={styles.metaDataContainer}>
       <Text style={[styles.bold, styles.marginRight]}>{title}:</Text>
       <Text>{value}</Text>
@@ -29,13 +29,13 @@ const Movie = () => {
   return (
     <SafeAreaView>
       <ScrollView>
-        <Image source={{uri: movie.bannerImage}} style={styles.bannerImage} />
+        <Image source={{ uri: movie.bannerImage }} style={styles.bannerImage} />
 
         <View style={styles.container}>
           <View style={styles.filmInfoContainer}>
             <>
               <Image
-                source={{uri: movie.posterImage}}
+                source={{ uri: movie.posterImage }}
                 style={styles.posterImage}
               />
             </>
@@ -61,4 +61,4 @@ const Movie = () => {
   );
 };
 
-export default Movie;
+export default MovieDetails;

@@ -1,9 +1,9 @@
-import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import { NavigationContainer } from "@react-navigation/native";
+import React from "react";
 
-import AuthContainer from './AuthContainer.jsx';
-import AppContainer from './AppContainer.jsx';
-import {useAuthorization} from '../context/AuthorizationContext.jsx';
+import AppContainer from "./AppContainer.jsx";
+import AuthContainer from "./AuthContainer.jsx";
+import { useAuthorization } from "../context/AuthorizationContext.jsx";
 
 const RouteContainer = () => {
   const [isAuthorised] = useAuthorization();

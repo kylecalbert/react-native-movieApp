@@ -1,12 +1,12 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   safeAreaView: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: "white",
   },
   container: {
-    justifyContent: 'center',
+    justifyContent: "center",
     padding: 20,
   },
 
@@ -15,13 +15,13 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontWeight: "bold",
+    textAlign: "center",
   },
   subTitle: {
     fontSize: 10,
-    color: '#A9A9A9',
-    textAlign: 'center',
+    color: "#A9A9A9",
+    textAlign: "center",
   },
 
   inputGroup: {
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   },
 
   textInput: {
-    borderColor: 'black',
+    borderColor: "black",
     borderWidth: 1,
     fontSize: 15,
     padding: 5,
