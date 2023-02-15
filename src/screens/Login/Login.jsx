@@ -5,10 +5,10 @@ import styles from "./Login.style";
 import { useAuthorization } from "../../context/AuthorizationContext";
 
 const Login = () => {
-  const [_, setIsAuthorised] = useAuthorization();
+  const [, setIsAuthorised] = useAuthorization();
 
   const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [, setPassword] = useState();
 
   const loginUser = () => {
     setIsAuthorised(true);

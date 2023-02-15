@@ -4,7 +4,7 @@ import { SafeAreaView, Text } from "react-native";
 import { useAuthorization } from "../../context/AuthorizationContext";
 
 const AccountSettings = () => {
-  const [_, setIsAuthorized] = useAuthorization();
+  const [, setIsAuthorized] = useAuthorization();
 
   return (
     <SafeAreaView>
