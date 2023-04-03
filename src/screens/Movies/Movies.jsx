@@ -1,5 +1,5 @@
-import { useNavigation } from "@react-navigation/native";
-import React, { useState, useEffect } from "react";
+import { useNavigation } from '@react-navigation/native';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -7,10 +7,12 @@ import {
   SafeAreaView,
   Pressable,
   FlatList,
-} from "react-native";
+} from 'react-native';
 
-import styles from "./Movies.styles.js";
-import { getPopularMovies, getAllMovies } from "../../api/movies.js";
+import styles from './Movies.styles.js';
+import { getPopularMovies, getAllMovies } from '../../api/movies.js';
+import MovieColumn from './MovieColumn.jsx';
+import MovieRow from './MovieRow.jsx';
 
 const Movies = () => {
   const navigation = useNavigation();
@@ -32,37 +34,8 @@ const Movies = () => {
     setMovies(fetchedMovies);
   };
 
-  const MovieColumn = ({ id, posterImage, title }) => (
-    <Pressable
-      style={styles.movieColumnContainer}
-      onPress={() => navigation.navigate("Movie", { id })}
-    >
-      <Image source={{ uri: posterImage }} style={styles.movieColumnImage} />
-      <Text style={styles.movieColumnTitle}>{title}</Text>
-    </Pressable>
-  );
-
-  const MovieRow = ({ image, title, characters, genre, release }) => {
-    return (
-      <View style={styles.movieRowContainer}>
-        <Image source={{ uri: image }} style={styles.movieRowImage} />
-
-        <View style={styles.movieInfoContainer}>
-          <View>
-            <Text style={styles.movieRowTitle}>{title}</Text>
-            <Text>{characters}</Text>
-          </View>
-          <View>
-            <Text>{genre}</Text>
-            <Text>{release}</Text>
-          </View>
-        </View>
-      </View>
-    );
-  };
-
   return (
-    <SafeAreaView style={{ backgroundColor: "white" }}>
+    <SafeAreaView style={{ backgroundColor: 'white' }}>
       <View style={styles.container}>
         <Text style={styles.title}>MOST POPULAR MOVIES</Text>
 

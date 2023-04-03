@@ -1,13 +1,14 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from 'react';
 
-const AuthorizationContext = React.createContext();
+export const AuthorizationContext = React.createContext();
 
 export const useAuthorization = () => {
-  return useContext(AuthorizationContext);
+  const [isAuthorised, setIsAuthorised] = useState(false);
+  return [isAuthorised, setIsAuthorised];
 };
 
 export const AuthorizationProvider = ({ children }) => {
-  const [isAuthorised, setIsAuthorised] = useState(false);
+  const [isAuthorised, setIsAuthorised] = useAuthorization();
 
   return (
     <AuthorizationContext.Provider value={[isAuthorised, setIsAuthorised]}>
